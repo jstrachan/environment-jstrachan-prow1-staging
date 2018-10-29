@@ -52,3 +52,18 @@ jenkins:
     GHE:
     - Name: GHE
       Url: https://github.beescloud.com/api/v3/
+expose:
+  config:
+    domain: 35.190.206.44.nip.io
+    exposer: Ingress
+    http: "true"
+    tlsacme: "false"
+    pathMode: ""
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+jenkins:
+  Servers:
+    Global:
+      EnvVars:
+        TILLER_NAMESPACE: kube-system
