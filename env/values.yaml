@@ -1,100 +1,24 @@
-expose:
-  Args: 
-    - --v
-    - 4
-  Annotations:
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-delete-policy: hook-succeeded
-
+PipelineSecrets: {}
 cleanup:
-  Args: 
-    - --cleanup
   Annotations:
     helm.sh/hook: pre-delete
     helm.sh/hook-delete-policy: hook-succeeded
+  Args:
+  - --cleanup
+controllerbuild:
+  enabled: true
 expose:
-  config:
-    domain: 35.240.23.123.nip.io
-    exposer: Ingress
-    http: "true"
-    tlsacme: "false"
-    pathMode: ""
   Annotations:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-delete-policy: hook-succeeded
-expose:
   config:
-    domain: 35.195.175.18.nip.io
+    domain: 35.240.38.127.nip.io
     exposer: Ingress
     http: "true"
-    tlsacme: "false"
-    pathMode: ""
-  Annotations:
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-delete-policy: hook-succeeded
-jenkins:
-  Servers:
-    GHE:
-    - Name: GHE
-      Url: https://github.beescloud.com/api/v3/
-expose:
-  config:
-    domain: 35.205.102.249.nip.io
-    exposer: Ingress
-    http: "true"
-    tlsacme: "false"
-    pathMode: ""
-  Annotations:
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-delete-policy: hook-succeeded
-jenkins:
-  Servers:
-    GHE:
-    - Name: GHE
-      Url: https://github.beescloud.com/api/v3/
-expose:
-  config:
-    domain: 35.190.206.44.nip.io
-    exposer: Ingress
-    http: "true"
-    tlsacme: "false"
-    pathMode: ""
-  Annotations:
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-delete-policy: hook-succeeded
-jenkins:
-  Servers:
-    Global:
-      EnvVars:
-        TILLER_NAMESPACE: kube-system
-expose:
-  config:
-    domain: 35.241.214.51.nip.io
-    exposer: Ingress
-    http: "true"
-    tlsacme: "false"
-    pathMode: ""
-  Annotations:
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-delete-policy: hook-succeeded
-jenkins:
-  Servers:
-    Global:
-      EnvVars:
-        TILLER_NAMESPACE: kube-system
-expose:
-  config:
-    domain: 104.199.28.125.nip.io
-    exposer: Ingress
-    http: "true"
-  Annotations:
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-delete-policy: hook-succeeded
 jenkins:
   Servers:
     Global:
       EnvVars:
         TILLER_NAMESPACE: kube-system
   enabled: false
-controllerbuild:
-  enabled: true
+prow: {}
